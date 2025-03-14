@@ -1,4 +1,5 @@
     import java.util.ArrayList;
+    import java.util.Scanner;
     
 
     abstract class User {
@@ -220,34 +221,87 @@
             System.out.println("Sistem Perpustakaan Berjalan...");
             Admin admin = new Admin("A001", "Alice");
             Member member = new Member("B23", "tes");
-
-            
-            admin.displayInfo();
-            member.displayInfo();
-            admin.displayRole();
-            member.displayRole();
-
+                      
             Perpustakaan perpustakaan = new Perpustakaan(5);
             perpustakaan.tambahBuku(new Buku("Harry Potter", "J.K. Rowling"));
             perpustakaan.tambahBuku(new Buku("Laskar Pelangi", "Andrea Hirata"));
             perpustakaan.tambahBuku(new Buku("The Hobbit", "J.R.R. Tolkien"));
             
-            perpustakaan.tampilkanSemuaBuku();
+            
 
-            perpustakaan.pinjamBuku("Harry Potter");
+            
 
-            perpustakaan.tampilkanSemuaBuku();
+            
 
             // Menampilkan buku yang tersedia
             perpustakaan.tampilkanBukuTersedia();
 
-                    // Mengembalikan buku
-        perpustakaan.kembalikanBuku("Harry Potter");
+                    
 
-        // Menampilkan kembali daftar buku yang tersedia setelah pengembalian
+        Scanner scanner = new Scanner(System.in);
+        int pilihan;
+
+        // Loop menu menggunakan while
+        while (true) {
+            // Menampilkan menu
+            System.out.println("\n===== Sistem Perpustakaan =====");
+            System.out.println("1. Display Info Admin");
+            System.out.println("2. Display Info Member");
+            System.out.println("3. Display Role Member");
+            System.out.println("4. Display Role Member");
+            System.out.println("5. Menampilkan Semua Data Buku");
+            System.out.println("6. Peminjaman Buku");
+            System.out.println("7. Pengembalian Buku");
+            System.out.println("8. Menampilkan Buku yang Tersedia");
+            System.out.println("9. Keluar");
+            System.out.print("Pilih fungsi yang akan digunakan: ");
+
+            pilihan = scanner.nextInt(); // Membaca input angka
+
+            switch (pilihan) {
+                case 1:
+                    admin.displayInfo();
+                    break;
+                case 2:
+                member.displayInfo();
+                    break;
+                case 3:
+                admin.displayRole();
+                    break;
+                case 4:
+                member.displayRole();
+                    break;
+                case 5:
+                perpustakaan.tampilkanSemuaBuku();
+                    break;
+                case 6:
+                perpustakaan.tampilkanSemuaBuku();
+                System.out.println("Buku yang dipinjam");
+                scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
+String judul = scanner.nextLine();
+                    perpustakaan.pinjamBuku(judul);
+                    break;
+                case 7:
+                perpustakaan.tampilkanSemuaBuku();
+                8System.out.println("Buku yang dikembalikan");
+                scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
+String kembali = scanner.nextLine();
+                perpustakaan.kembalikanBuku(kembali);
+                    break;
+                case 8:
+                    // Menampilkan kembali daftar buku yang tersedia setelah pengembalian
         perpustakaan.tampilkanBukuTersedia();
+                    break;
+                case 9:
+                    System.out.println("Keluar dari program. Terima kasih!");
+                    scanner.close(); // Tutup Scanner
+                    return; // Keluar dari loop dan program
+                default:
+                    System.out.println("Pilihan tidak valid! Silakan coba lagi.");
+            }
+        }
 
-        
+
         }
     }
     
