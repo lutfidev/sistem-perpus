@@ -1,4 +1,5 @@
     import java.util.ArrayList;
+    
 
     abstract class User {
         protected String id;
@@ -215,6 +216,7 @@
     public class SistemPerpustakaan {
 
         public static void main(String[] args) {
+          
             System.out.println("Sistem Perpustakaan Berjalan...");
             Admin admin = new Admin("A001", "Alice");
             Member member = new Member("B23", "tes");
@@ -245,16 +247,7 @@
         // Menampilkan kembali daftar buku yang tersedia setelah pengembalian
         perpustakaan.tampilkanBukuTersedia();
 
-
-
-
-
-             
-
-            
-
-
-
+        
         }
-
     }
+    
