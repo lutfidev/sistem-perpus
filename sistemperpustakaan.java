@@ -13,7 +13,7 @@ class User {
         System.out.println("Name: " + name);
     }
 }
-
+//tes Git
 // Child Class Admin
 class Admin extends User {
     public Admin(String id, String name) {
