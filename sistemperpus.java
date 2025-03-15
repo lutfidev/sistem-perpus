@@ -23,8 +23,11 @@ abstract class User {
 
 // Admin class
 class Admin extends User {
-    public Admin(String id, String name) {
+    private String password; // Atribut password
+
+    public Admin(String id, String name, String password) { // Constructor dengan password
         super(id, name);
+        this.password = password;
     }
 
     @Override
@@ -32,9 +35,21 @@ class Admin extends User {
         System.out.println(name + " adalah Admin.");
     }
 
+    // Metode untuk memverifikasi password
+    private boolean verifyPassword(Scanner scanner) {
+        System.out.print("Masukkan password: ");
+        String inputPassword = scanner.nextLine();
+        return inputPassword.equals(password);
+    }
+
     // Polymorphic Method untuk Admin
     @Override
     public void interactWithLibrary(Perpustakaan perpustakaan, Scanner scanner) {
+        if (!verifyPassword(scanner)) { // Verifikasi password
+            System.out.println("Password salah. Akses ditolak.");
+            return;
+        }
+
         System.out.println("\n=== Admin Menu ===");
         System.out.println("1. Tambah Buku");
         System.out.println("2. Hapus Buku");
@@ -199,7 +214,7 @@ public class sistemperpus {
         Perpustakaan perpustakaan = new Perpustakaan(10);
 
         // Inisialisasi Admin dan Member
-        User admin = new Admin("A001", "Alice");
+        User admin = new Admin("A001", "Alice", "12345"); 
         User member = new Member("B002", "Bob");
 
         System.out.println("\nPilih peran pengguna:");
