@@ -3,10 +3,9 @@ import java.util.Scanner;
 public class SistemPerpustakaan {
    public SistemPerpustakaan() {
    }
-
    public static void main(String[] var0) {
       System.out.println("Sistem Perpustakaan Berjalan...");
-      Admin var1 = new Admin("A001", "Alice");
+      Admin var1 = new Admin("A001", "Alice", "12345"); // Gunakan 3 parameter
       Member var2 = new Member("B23", "tes");
       Perpustakaan var3 = new Perpustakaan(10);
       var3.tambahBuku(new Buku("Harry Potter", "J.K. Rowling"));
