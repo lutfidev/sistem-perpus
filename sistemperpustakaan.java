@@ -56,13 +56,16 @@
     class Buku {
         private String judul;
         private String penulis;
-        protected boolean tersedia; 
         // Status ketersediaan buku
+        protected boolean tersedia; 
+        
+        
     
         public Buku(String judul, String penulis) {
             this.judul = judul;
             this.penulis = penulis;
-            this.tersedia = true; // Secara default, buku tersedia
+            // membuat default, status buku tersedia
+            this.tersedia = true; 
         }
     
         public String getJudul() {
@@ -211,9 +214,36 @@
         }
         System.out.println("Buku dengan judul '" + judul + "' tidak ditemukan.");
     }
+
+    /*public void MenuBuku() {
+        while (true) {
+            // Menampilkan menu
+            System.out.println("\n===== Data Buku =====");
+            
+            System.out.println("1. Menambah Data Buku Baru");
+            System.out.println("2. Menghapus data Buku di Perpustakaan");
+            System.out.println("3. Mencari data Buku di Perpustakaan");
+            System.out.print("Pilih fungsi yang akan digunakan: ");
+            Scanner bukuScanner = new Scanner(System.in);
+            int buku = bukuScanner.nextInt(); // Membaca input angka
+            bukuScanner.nextLine();
+            switch (buku) {
+                case 1:
+                    tambahBuku(null);
+                    break;
+                case 2:
+                
+                break;
+                default:
+            System.out.println("Pilihan tidak valid! Silakan coba lagi.");
+            }
+        }
+    }
+    */
         
     }
-
+    
+    
     public class SistemPerpustakaan {
 
         public static void main(String[] args) {
@@ -222,7 +252,7 @@
             Admin admin = new Admin("A001", "Alice");
             Member member = new Member("B23", "tes");
                       
-            Perpustakaan perpustakaan = new Perpustakaan(5);
+            Perpustakaan perpustakaan = new Perpustakaan(10);
             perpustakaan.tambahBuku(new Buku("Harry Potter", "J.K. Rowling"));
             perpustakaan.tambahBuku(new Buku("Laskar Pelangi", "Andrea Hirata"));
             perpustakaan.tambahBuku(new Buku("The Hobbit", "J.R.R. Tolkien"));
@@ -231,13 +261,8 @@
 
             
 
-            
-
-            // Menampilkan buku yang tersedia
-            perpustakaan.tampilkanBukuTersedia();
-
-                    
-
+                            
+        // Menampilkan Menu pada Sistem Aplikasi
         Scanner scanner = new Scanner(System.in);
         int pilihan;
 
@@ -249,11 +274,14 @@
             System.out.println("2. Display Info Member");
             System.out.println("3. Display Role Member");
             System.out.println("4. Display Role Member");
-            System.out.println("5. Menampilkan Semua Data Buku");
-            System.out.println("6. Peminjaman Buku");
-            System.out.println("7. Pengembalian Buku");
-            System.out.println("8. Menampilkan Buku yang Tersedia");
-            System.out.println("9. Keluar");
+            System.out.println("5. Menambah Data Buku");
+            System.out.println("6. Menghapus Data buku");
+            System.out.println("7. Mencari Data buku");
+            System.out.println("8. Menampilkan Semua Data Buku");
+            System.out.println("9. Peminjaman Buku");
+            System.out.println("10. Pengembalian Buku");
+            System.out.println("11. Menampilkan Buku yang Tersedia");
+            System.out.println("12. Keluar");
             System.out.print("Pilih fungsi yang akan digunakan: ");
 
             pilihan = scanner.nextInt(); // Membaca input angka
@@ -271,28 +299,56 @@
                 case 4:
                 member.displayRole();
                     break;
-                case 5:
+                 case 5:
+                 //perpustakaan.tampilkanSemuaBuku();
+                 //perpustakaan.MenuBuku(); 
+                 scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
+                
+                System.out.print("Masukkan judul buku: ");
+                String tambahjudul = scanner.nextLine();
+                System.out.print("Masukkan nama penulis: ");
+                String tambahpenulis = scanner.nextLine();
+                 perpustakaan.tambahBuku(new Buku(tambahjudul, tambahpenulis));
+                 perpustakaan.tampilkanSemuaBuku();
+                break;
+                case 6:
+                //Menghapus
+                scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
+                    System.out.print("Masukkan judul buku: ");
+                String hapusjudul = scanner.nextLine();
+                perpustakaan.hapusBuku(hapusjudul);
                 perpustakaan.tampilkanSemuaBuku();
                     break;
-                case 6:
+                    case 7:
+                    //Mencari Data Buku
+                    scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
+                    System.out.print("Masukkan judul buku: ");
+                String carijudul = scanner.nextLine();
+                perpustakaan.cariBuku(carijudul);
+                    break;
+                    
+                case 8:
+                perpustakaan.tampilkanSemuaBuku();
+                    break;
+                case 9:
                 perpustakaan.tampilkanSemuaBuku();
                 System.out.println("Buku yang dipinjam");
                 scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
-String judul = scanner.nextLine();
+                String judul = scanner.nextLine();
                     perpustakaan.pinjamBuku(judul);
                     break;
-                case 7:
+                case 10:
                 perpustakaan.tampilkanSemuaBuku();
-                8System.out.println("Buku yang dikembalikan");
+                System.out.println("Buku yang dikembalikan");
                 scanner.nextLine();  // Tambahkan ini jika sebelumnya ada scanner.nextInt()
 String kembali = scanner.nextLine();
                 perpustakaan.kembalikanBuku(kembali);
                     break;
-                case 8:
+                case 11:
                     // Menampilkan kembali daftar buku yang tersedia setelah pengembalian
         perpustakaan.tampilkanBukuTersedia();
                     break;
-                case 9:
+                case 12:
                     System.out.println("Keluar dari program. Terima kasih!");
                     scanner.close(); // Tutup Scanner
                     return; // Keluar dari loop dan program
