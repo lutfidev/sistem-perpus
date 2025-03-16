@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class SistemPerpustakaan {
+public class sistemperpustakaan {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Perpustakaan perpustakaan = new Perpustakaan(); // Menggunakan constructor default
