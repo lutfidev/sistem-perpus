@@ -1,36 +1,49 @@
 import java.util.Scanner;
 
-class Member extends User {
-    public Member(String var1, String var2) {
-       super(var1, var2);
+public class Member extends User {
+    public Member(String id, String name) {
+        super(id, name);
     }
- 
+
+    @Override
     public void displayRole() {
-       System.out.println(this.name + " adalah Member.");
+        System.out.println(name + " adalah Member.");
     }
- 
-   //  public void displayInfo() {
-   //     System.out.println("=== Member Info ===");
-   //     super.displayInfo();
-   //  }
 
+    @Override
     public void interactWithLibrary(Perpustakaan perpustakaan, Scanner scanner) {
-        System.out.println("1. Pinjam Buku");
-        System.out.println("2. Kembalikan Buku");
-        System.out.print("Pilih tindakan: ");
-        int pilihan = scanner.nextInt();
-        scanner.nextLine();
+        boolean isRunning = true; // Variabel untuk mengontrol loop
+        while (isRunning) {
+            System.out.println("\n--- Menu Member ---");
+            System.out.println("1. Meminjam Buku");
+            System.out.println("2. Mengembalikan Buku");
+            System.out.println("3. Menampilkan Buku yang Tersedia");
+            System.out.println("4. Keluar");
+            System.out.print("Pilih fungsi yang akan digunakan: ");
+            int pilihan = scanner.nextInt();
+            scanner.nextLine(); // Membersihkan newline setelah nextInt()
 
-        if (pilihan == 1) {
-            System.out.print("Masukkan judul buku yang ingin dipinjam: ");
-            String judul = scanner.nextLine();
-            perpustakaan.pinjamBuku(judul);
-        } else if (pilihan == 2) {
-            System.out.print("Masukkan judul buku yang ingin dikembalikan: ");
-            String judul = scanner.nextLine();
-            perpustakaan.kembalikanBuku(judul);
-        } else {
-            System.out.println("Pilihan tidak valid.");
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukkan judul buku yang ingin dipinjam: ");
+                    String judulPinjam = scanner.nextLine();
+                    perpustakaan.pinjamBuku(judulPinjam);
+                    break;
+                case 2:
+                    System.out.print("Masukkan judul buku yang ingin dikembalikan: ");
+                    String judulKembali = scanner.nextLine();
+                    perpustakaan.kembalikanBuku(judulKembali);
+                    break;
+                case 3:
+                    perpustakaan.tampilkanBukuTersedia();
+                    break;
+                case 4:
+                    System.out.println("Keluar dari program. Terima kasih!");
+                    isRunning = false; // Keluar dari loop
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
         }
     }
 }
